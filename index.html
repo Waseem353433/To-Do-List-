@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+</head>
+<body>
+
+  <script>
+    let heading = document.createElement("h1")
+    heading.textContent = "To-Do List"
+    document.body.appendChild(heading)
+
+    let input = document.createElement("input")
+    input.placeholder = "Insert Your Task"
+    document.body.appendChild(input)
+
+    let btn = document.createElement("button")
+    btn.textContent = "Submit"
+    document.body.appendChild(btn)
+
+    let list = document.createElement("ol")
+    document.body.appendChild(list)
+
+    btn.addEventListener("click", () => {
+
+      // prevent empty input
+      if (input.value === "") return;
+
+      let li = document.createElement("li")
+      li.textContent = input.value
+
+      // ✅ create delete button for each task
+      let rmbtn = document.createElement("button")
+      rmbtn.textContent = " Delete"
+
+      // delete only this li
+      rmbtn.addEventListener("click", () => {
+        li.remove()
+      })
+
+      // optional: mark complete
+      li.addEventListener("click", () => {
+        li.style.textDecoration = "line-through"
+      })
+
+      li.appendChild(rmbtn)
+      list.appendChild(li)
+
+      input.value = ""
+    })
+
+  </script>
+
+</body>
+</html>
