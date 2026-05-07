@@ -1,57 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To-Do List</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beautiful To-Do App</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="app-shell">
+    <header>
+      <h1>My Beautiful To-Do List</h1>
+      <p>Keep your day organized with a clean todo experience: add tasks, mark them complete, filter easily, and keep progress saved automatically.</p>
+    </header>
 
-  <script>
-    let heading = document.createElement("h1")
-    heading.textContent = "To-Do List"
-    document.body.appendChild(heading)
+    <form class="task-form" id="taskForm">
+      <input id="taskInput" type="text" placeholder="Add new task..." autocomplete="off" />
+      <button type="submit">Add Task</button>
+    </form>
 
-    let input = document.createElement("input")
-    input.placeholder = "Insert Your Task"
-    document.body.appendChild(input)
+    <div class="task-card">
+      <div class="toolbar">
+        <span class="status" id="taskStatus">0 tasks total</span>
+        <div class="filters">
+          <button type="button" data-filter="all" class="active">All</button>
+          <button type="button" data-filter="active">Active</button>
+          <button type="button" data-filter="completed">Completed</button>
+        </div>
+      </div>
 
-    let btn = document.createElement("button")
-    btn.textContent = "Submit"
-    document.body.appendChild(btn)
+      <ul class="task-list" id="taskList"></ul>
 
-    let list = document.createElement("ol")
-    document.body.appendChild(list)
+      <div class="footer">
+        <span id="completedCount">0 completed</span>
+        <button type="button" class="clear" id="clearCompleted">Clear Completed</button>
+      </div>
+    </div>
+  </div>
 
-    btn.addEventListener("click", () => {
-
-      // prevent empty input
-      if (input.value === "") return;
-
-      let li = document.createElement("li")
-      li.textContent = input.value
-
-      // ✅ create delete button for each task
-      let rmbtn = document.createElement("button")
-      rmbtn.textContent = " Delete"
-
-      // delete only this li
-      rmbtn.addEventListener("click", () => {
-        li.remove()
-      })
-
-      // optional: mark complete
-      li.addEventListener("click", () => {
-        li.style.textDecoration = "line-through"
-      })
-
-      li.appendChild(rmbtn)
-      list.appendChild(li)
-
-      input.value = ""
-    })
-
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
